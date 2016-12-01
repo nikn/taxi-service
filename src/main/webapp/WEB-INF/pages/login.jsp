@@ -5,9 +5,9 @@
   Time: 19:27
   To change this template use File | Settings | File Templates.
 --%>
-<%@ include file="/index.jsp"%>
+<%@ include file="index.jsp"%>
 <div class="container">
-    <div class="row main">
+    <div class="main">
         <div class="panel-heading">
             <div class="panel-title text-center">
                 <h1 class="title">Innopolis Taxi &trade;</h1>
@@ -16,18 +16,18 @@
         </div>
         <div class="main-login main-center">
             <c:if test="${not empty requestScope.message}">
-                <div class="alert alert-danger">
-                ${message}
+                <div class="alert alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <strong>Error!</strong> ${message}
                 </div>
             </c:if>
-
             <form class="form-horizontal" method="post" action="/login">
                 <div class="form-group">
-                    <label for="login" class="cols-sm-2 control-label">Login</label>
+                    <label for="username" class="cols-sm-2 control-label">Login</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="login" id="login"  placeholder="Enter your Login" required/>
+                            <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Login" required/>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-package ru.innopolis.nikn.dao;
+package ru.innopolis.nikn.models.entities;
 
 import java.io.Serializable;
 

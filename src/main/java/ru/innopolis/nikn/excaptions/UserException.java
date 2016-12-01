@@ -3,7 +3,7 @@ package ru.innopolis.nikn.excaptions;
 /**
  * Created by Nikolay on 22.11.2016.
  */
-public class UserQueryException extends Exception{
+public class UserException extends Exception{
 
     public static final String LOGIN_ERROR_MESSAGE = "Login or password wrong!";
 
@@ -11,7 +11,7 @@ public class UserQueryException extends Exception{
 
 
 
-    public UserQueryException(String message) {
+    public UserException(String message) {
         super(message);
     }
 }

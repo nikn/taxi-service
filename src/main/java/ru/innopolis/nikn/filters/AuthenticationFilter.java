@@ -34,8 +34,8 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession session = req.getSession(false);
 
-        if(session == null || session.getAttribute("login") == null){
-            res.sendRedirect("login");
+        if(session == null || session.getAttribute("username") == null){
+            res.sendRedirect("/login");
         }else{
             chain.doFilter(request, response);
         }

@@ -5,9 +5,9 @@
   Time: 17:32
   To change this template use File | Settings | File Templates.
 --%>
-<%@ include file="/index.jsp"%>
+<%@ include file="index.jsp"%>
 <div class="container">
-    <div class="row main">
+    <div class="main">
         <div class="panel-heading">
             <div class="panel-title text-center">
                 <h1 class="title">Innopolis Taxi &trade;</h1>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="first_name" class="cols-sm-2 control-label">Login</label>
+                    <label for="first_name" class="cols-sm-2 control-label">First name</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="last_name" class="cols-sm-2 control-label">Login</label>
+                    <label for="last_name" class="cols-sm-2 control-label">Last name</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>

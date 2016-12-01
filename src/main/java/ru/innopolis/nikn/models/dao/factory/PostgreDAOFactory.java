@@ -1,14 +1,15 @@
-package ru.innopolis.nikn.dao.factory;
+package ru.innopolis.nikn.models.dao.factory;
 
 import org.apache.commons.dbcp2.ConnectionFactory;
 import org.apache.commons.dbcp2.PoolableConnectionFactory;
 import org.apache.commons.dbcp2.PoolingDriver;
+import org.apache.commons.dbcp2.Utils;
 import org.apache.commons.pool2.ObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPool;
-import org.apache.commons.dbcp2.Utils;
-
-import ru.innopolis.nikn.dao.UserDAO;
-import ru.innopolis.nikn.dao.postgre.PostgreUserDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import ru.innopolis.nikn.models.dao.UserDAO;
+import ru.innopolis.nikn.models.dao.postgre.PostgreUserDAO;
 import ru.innopolis.nikn.utils.PoolConnectionFactory;
 
 import java.sql.Connection;
@@ -18,13 +19,18 @@ import java.sql.SQLException;
 /**
  * Created by Nikolay on 22.11.2016.
  */
-public class PostgreDAOFactory extends DAOFactory {
+@Component
+public class PostgreDAOFactory implements DAOFactory {
 
     public static final String DBURL = "jdbc:postgresql://localhost:5432/postgres";
     private final String USER_NAME = "postgres";
     private final String PASSWORD = "Qwerty";
 
-    private PostgreDAOFactory() {
+    @Autowired
+    private UserDAO userDAO;
+
+
+    public PostgreDAOFactory() {
         PoolConnectionFactory.registerJDBCDriver(PoolConnectionFactory.POSTGRE_DRIVER);
         ConnectionFactory connectionFactory = PoolConnectionFactory.getConnFactory(DBURL, USER_NAME, PASSWORD);
         PoolableConnectionFactory poolfactory = new PoolableConnectionFactory(connectionFactory, null);
@@ -34,26 +40,21 @@ public class PostgreDAOFactory extends DAOFactory {
         dbcpDriver.registerPool("dbcp-jcg-postgre", connectionPool);
     }
 
-    public static PostgreDAOFactory getInstance() {
-        return PostgreSingletone.INSTANCE;
+    @Override
+    public UserDAO getUserDAO() {
+        return userDAO;
     }
 
+    @Override
     public Connection createConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:apache:commons:dbcp:dbcp-jcg-postgre");
     }
 
-    public void closeConnection(Connection connection) {
-        Utils.closeQuietly(connection);
-    }
-
     @Override
-    public UserDAO getUserDAO() {
-        return new PostgreUserDAO();
+    public void closeConnection(Connection connection) {
+        if(connection != null) {
+            Utils.closeQuietly(connection);
+        }
     }
-
-    private static class PostgreSingletone {
-        private static final PostgreDAOFactory INSTANCE = new PostgreDAOFactory();
-    }
-
 
 }
