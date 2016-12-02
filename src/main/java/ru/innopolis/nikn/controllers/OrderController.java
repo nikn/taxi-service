@@ -20,17 +20,33 @@ public class OrderController {
     @Autowired
     IOrderService orderService;
 
+    /**
+     * Get order page view for order with orderId.
+     * @param session HttpSession
+     * @param orderId int @PathVariable
+     * @return ModelAndView
+     */
     @GetMapping(path = "/order/{orderId}")
     public ModelAndView getOrder(HttpSession session , @PathVariable int orderId) {
         return null;
     }
 
+    /**
+     * Get order page view for create order.
+     * @param session HttpSession
+     * @return ModelAndView
+     */
     @GetMapping(path = "/order/create")
     public ModelAndView getOrderCreate(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("order-create");
         return modelAndView;
     }
 
+    /**
+     * Get order page view for map page.
+     * @param session HttpSession
+     * @return ModelAndView
+     */
     @GetMapping(path = "/order/map")
     public ModelAndView getOrderMap(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("map");
@@ -54,7 +70,7 @@ public class OrderController {
 
     @PostMapping(path = "/order/create")
     public ModelAndView postOrderCreate(HttpSession session, @RequestParam Map<String,String> requestParams) {
-        return null;
+        return orderService.postOrderCreate(session, requestParams);
     }
 
     @PostMapping(path = "/order/edit/{orderId}")

@@ -27,7 +27,8 @@ public class PostgreOrderDAO implements OrderDAO{
     private static final String PREPARED_FIND_ALL = "select A.*, B.name, B.class_name from orders as A " +
             "INNER JOIN order_status as B ON A.status_id = B.id " +
             "WHERE A.user_id = (?)";
-
+    private static final String PREPARED_CREATE = "insert into orders (user_id, status_id, src_latitude, src_longitude, " +
+            "dst_latitude, dst_longitude, distance, create_time, modify_time) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     @Autowired
     private DAOFactory daoFactory;
 
@@ -82,6 +83,39 @@ public class PostgreOrderDAO implements OrderDAO{
             daoFactory.closeConnection(connection);
         }
         return orders;
+    }
+
+    @Override
+    public boolean create(Order order) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = daoFactory.createConnection();
+            preparedStatement = connection.prepareStatement(PREPARED_CREATE);
+            preparedStatement.setLong(1, order.getUser().getId());
+            preparedStatement.setInt(2, order.getOrderStatus().getId());
+            preparedStatement.setDouble(3, order.getSrcLat());
+            preparedStatement.setDouble(4, order.getSrcLong());
+            preparedStatement.setDouble(5, order.getDstLat());
+            preparedStatement.setDouble(6, order.getDstLong());
+            preparedStatement.setDouble(7, order.getDistance());
+            preparedStatement.setTimestamp(8, order.getCreateTime());
+            preparedStatement.setTimestamp(9, order.getModifyTime());
+            preparedStatement.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            daoFactory.closeConnection(connection);
+        }
+        return false;
     }
 
 }

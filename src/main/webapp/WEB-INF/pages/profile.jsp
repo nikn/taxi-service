@@ -15,7 +15,7 @@
             </div>
             <div class="col-sm-6">
                 <h4> Username : ${requestScope.user.username} </h4>
-                <h4>${requestScope.user.getFirstName()} ${requestScope.user.getLastName()}l</h4>
+                <h4>${requestScope.user.getFirstName()} ${requestScope.user.getLastName()}</h4>
                 <small>
                     <cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker"></i>
                     </cite>

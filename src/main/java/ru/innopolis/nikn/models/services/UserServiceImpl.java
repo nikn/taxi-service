@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import ru.innopolis.nikn.models.dao.UserDAO;
 import ru.innopolis.nikn.models.entities.User;
+import ru.innopolis.nikn.utils.CryptUtil;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class UserServiceImpl implements IUserService{
         String message = null;
         ModelAndView modelAndView = null;
         try {
-            User user = userDAO.find(requestParams.get("username"), requestParams.get("password"));
+            User user = userDAO.find(requestParams.get("username"), CryptUtil.cript(requestParams.get("password")));
             session.setAttribute("user_id", user.getId());
             session.setAttribute("username", user.getUsername());
             modelAndView = new ModelAndView("redirect:/profile");
@@ -47,8 +48,7 @@ public class UserServiceImpl implements IUserService{
                     .withFirstName(requestParams.get("first_name"))
                     .withLastName(requestParams.get("last_name"))
                     .withEmail(requestParams.get("email"))
-                    .withPassword(requestParams.get("password"));
-
+                    .withPassword(CryptUtil.cript(requestParams.get("password")));
             User user = new User(builder);
             if(userDAO.createUser(user)){
                 modelAndView = loginAction(session, requestParams);

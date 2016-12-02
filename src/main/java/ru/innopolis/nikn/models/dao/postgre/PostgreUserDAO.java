@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 /**
  * Created by Nikolay on 22.11.2016.
@@ -109,6 +110,18 @@ public class PostgreUserDAO implements UserDAO {
             closePreparedStatement(preparedStatement);
             daoFactory.closeConnection(connection);
         }
+    }
+
+    @Override
+    public User buildUser(Map<String, String> params) {
+        User.Builder builder = new User.Builder();
+        builder.withId(Integer.parseInt(params.get("id")))
+                .withUsername(params.get("username"))
+                .withEmail(params.get("email"))
+                .withFirstName(params.get("first_name"))
+                .withLastName(params.get("last_name"));
+        User user = new User(builder);
+        return user;
     }
 
 

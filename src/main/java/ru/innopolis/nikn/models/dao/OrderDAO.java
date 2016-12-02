@@ -11,4 +11,6 @@ public interface OrderDAO {
 
     public List<Order> findAll(int userId);
 
+    public boolean create(Order order);
+
 }

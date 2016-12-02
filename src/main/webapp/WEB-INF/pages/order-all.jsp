@@ -18,6 +18,8 @@
             <th>Source place</th>
             <th>Destination place</th>
             <th>Status</th>
+            <th>Create Time</th>
+            <th>Modify Time</th>
 
         </tr>
         </thead>
@@ -29,6 +31,8 @@
             <th>Source place</th>
             <th>Destination place</th>
             <th>Status</th>
+            <th>Create Time</th>
+            <th>Modify Time</th>
         </tr>
         </tfoot>
         <tbody>
@@ -41,6 +45,11 @@
                 <td>[${order.srcLat}, ${order.srcLong}]</td>
                 <td>[${order.dstLat}, ${order.dstLong}]</td>
                 <td>${order.orderStatus.name}</td>
+                <td>${order.createTime}</td>
+                <td>${order.modifyTime}</td>
+                <td>
+                    <a href="#" class="btn btn-outline-danger">Cancel</a>
+                </td>
             </tr>
             <c:set var="count" value="${count + 1}" scope="page"/>
         </c:forEach>
