@@ -19,6 +19,4 @@ public interface IOrderService {
     public ModelAndView postOrderCreate(HttpSession session, Map<String, String> requestParams);
     public ModelAndView postOrderEdit(HttpSession session, Map<String, String> requestParams, int orderId);
 
-    public Order buildOrder(Map<String, String> params) throws Exception;
-
 }

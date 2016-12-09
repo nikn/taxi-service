@@ -42,7 +42,7 @@
       <div class="collapse navbar-toggleable-md" id="navbarResponsive">
           <a class="navbar-brand" href="/">Innopolis taxi &trade;</a>
           <ul class="nav navbar-nav">
-              <c:if test="${not empty sessionScope.username}">
+              <c:if test="${not empty pageContext.request.userPrincipal.name}">
                   <li class="nav-item">
                       <a class="nav-link" href="/order/all">Orders</a>
                   </li>
@@ -52,11 +52,14 @@
                   <li class="nav-item">
                       <a class="nav-link" href="/order/map">Map</a>
                   </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/status">Status</a>
+                  </li>
               </c:if>
           </ul>
           <ul class="nav navbar-nav float-lg-right">
               <c:choose>
-              <c:when test="${empty sessionScope.username}">
+              <c:when test="${empty pageContext.request.userPrincipal.name}">
                 <li class="nav-item">
                     <a class="nav-link" href="/login">
                         Login</a></li>
@@ -66,7 +69,7 @@
               </c:when>
               <c:otherwise>
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">Profile ${sessionScope.username}</a>
+                    <a class="nav-link" href="/profile">Profile ${pageContext.request.userPrincipal.name}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
@@ -75,33 +78,6 @@
               </c:choose>
           </ul>
       </div>
-      <%--<div class="container-fluid">--%>
-          <%--<div class="navbar-header">--%>
-              <%--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">--%>
-                  <%--<span class="sr-only">Toggle navigation</span>--%>
-                  <%--<span class="icon-bar"></span>--%>
-                  <%--<span class="icon-bar"></span>--%>
-                  <%--<span class="icon-bar"></span>--%>
-              <%--</button>--%>
-              <%--<a class="navbar-brand" href="/">Innopolis taxi &trade;</a>--%>
-          <%--</div>--%>
-          <%--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--%>
-              <%--<ul class="nav navbar-nav navbar-right">--%>
-                  <%--<c:choose>--%>
-                      <%--<c:when test="${empty sessionScope.username}">--%>
-                          <%--<li><a href="/login">Login</a></li>--%>
-                          <%--<li><a href="/register">Register</a></li>--%>
-                      <%--</c:when>--%>
-                      <%--<c:otherwise>--%>
-                          <%--<li><a href="/profile">Profile ${sessionScope.username}</a></li>--%>
-                          <%--<li><a href="/order/all">Orders</a></li>--%>
-                          <%--<li><a href="/order/create">Create new order</a></li>--%>
-                          <%--<li><a href="/logout">Logout</a></li>--%>
-                      <%--</c:otherwise>--%>
-                  <%--</c:choose>--%>
-              <%--</ul>--%>
-          <%--</div>--%>
-      <%--</div>--%>
   </nav>
   </body>
 </html>

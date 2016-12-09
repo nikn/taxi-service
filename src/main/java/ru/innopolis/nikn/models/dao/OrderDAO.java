@@ -7,10 +7,6 @@ import java.util.List;
 /**
  * Created by Nikolay on 30.11.2016.
  */
-public interface OrderDAO {
-
-    public List<Order> findAll(int userId);
-
-    public boolean create(Order order);
+public interface OrderDAO extends BaseDAO{
 
 }

@@ -1,136 +1,58 @@
 package ru.innopolis.nikn.models.entities;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
- * Created by Nikolay on 22.11.2016.
+ * Created by Nikolay on 09.12.2016.
  */
-public class User implements Serializable {
-    private long id;
+@Entity
+@Table(name = "users")
+public class User extends BaseEntity{
+
+    @Column
     private String username;
-    private String firstName;
-    private String lastName;
-    private String email;
+
+    @Column
     private String password;
-    private long cityId;
-    private int rate;
-    private long roleId;
-    private boolean lock;
 
-    public User(Builder builder) {
-        this.id = builder.id;
-        this.username = builder.username;
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-        this.email = builder.email;
-        this.password = builder.password;
-        this.cityId = builder.cityId;
-        this.rate = builder.rate;
-        this.roleId = builder.roleId;
-        this.lock = builder.lock;
-    }
+    @OneToOne
+    private Authority authority;
 
-    public long getId() {
-        return id;
-    }
+    @Column
+    private boolean enabled;
 
     public String getUsername() {
         return username;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public long getCityId() {
-        return cityId;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public int getRate() {
-        return rate;
+    public Authority getAuthority() {
+        return authority;
     }
 
-    public long getRoleId() {
-        return roleId;
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
-    public boolean isLock() {
-        return lock;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", cityId=" + cityId +
-                ", rate=" + rate +
-                ", roleId=" + roleId +
-                ", lock=" + lock +
-                '}';
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
-
-    public static class Builder {
-        private long id;
-        private String username;
-        private String firstName;
-        private String lastName;
-        private String email;
-        private String password;
-        private long cityId;
-        private int rate;
-        private long roleId;
-        private boolean lock;
-
-        public Builder() {
-
-        }
-
-        public Builder withId(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder withUsername(String username) {
-            this.username = username;
-            return this;
-        }
-
-        public Builder withFirstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public Builder withLastName(String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
-
-        public Builder withEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder withPassword(String password) {
-            this.password = password;
-            return this;
-        }
-    }
-
 }

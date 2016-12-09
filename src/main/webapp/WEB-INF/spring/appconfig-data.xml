@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/data/jpa
+    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <!-- Configure the data source bean -->
+    <!--<bean id="pum" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">-->
+        <!--<property name="persistenceXmlLocations">-->
+            <!--<list>-->
+                <!--<value>classpath*:META-INF/persistence.xml</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="dataSources">-->
+            <!--<map>-->
+                <!--<entry key="localDataSource" value-ref="dataSource"/>-->
+                <!--&lt;!&ndash;<entry key="remoteDataSource" value-ref="remote-db"/>&ndash;&gt;-->
+            <!--</map>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; if no datasource is specified, use this one &ndash;&gt;-->
+        <!--<property name="defaultDataSource" ref="dataSource"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->
+        <!--<property name="persistenceUnitManager" ref="pum"/>-->
+        <!---->
+    <!--</bean>-->
+
+    <!--<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="packagesToScan" value="ru.innopolis.nikn.models.entities"/>-->
+        <!--<property name="jpaVendorAdapter">-->
+            <!--<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">-->
+                <!--<property name="showSql"          value="true" />-->
+                <!--<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL95Dialect"/>-->
+            <!--</bean>-->
+        <!--</property>-->
+        <!--<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"/>-->
+        <!--<property name="persistenceUnitName" value="postgres"/>-->
+
+    <!--</bean>-->
+
+</beans>

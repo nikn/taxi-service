@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="index.jsp"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <div class="container">
     <div class="main">
         <div class="panel-heading">
@@ -21,7 +22,7 @@
                     <strong>Error!</strong> ${message}
                 </div>
             </c:if>
-            <form class="form-horizontal" method="post" action="/login">
+            <form class="form-horizontal" method="post" action="j_spring_security_check">
                 <div class="form-group">
                     <label for="username" class="cols-sm-2 control-label">Login</label>
                     <div class="cols-sm-10">
@@ -37,6 +38,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" required/>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </div>
                     </div>
                 </div>

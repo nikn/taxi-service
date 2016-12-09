@@ -1,42 +1,40 @@
 package ru.innopolis.nikn.models.entities;
 
+import org.hibernate.annotations.ManyToAny;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
+
+
 
 /**
  * Created by Nikolay on 30.11.2016.
  */
-public class Order {
-    private int id;
-    private User user;
+@Entity
+@Table(name = "orders")
+public class Order extends BaseEntity{
 
-    private OrderStatus orderStatus;
+    @ManyToOne
+    private Profile profile;
 
+//    @Column
+//    @ManyToOne
+//    private Status status;
+
+    @Column
     private Timestamp createTime;
+    @Column
     private Timestamp modifyTime;
 
-    private double srcLat;
-    private double srcLong;
 
-    private double dstLat;
-    private double dstLong;
+    @ManyToOne
+    private Place srcPlace;
 
+    @ManyToOne
+    private Place dstPlace;
+
+    @Column
     private double distance;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
 
     public Timestamp getCreateTime() {
         return createTime;
@@ -54,38 +52,6 @@ public class Order {
         this.modifyTime = modifyTime;
     }
 
-    public double getSrcLat() {
-        return srcLat;
-    }
-
-    public void setSrcLat(double srcLat) {
-        this.srcLat = srcLat;
-    }
-
-    public double getSrcLong() {
-        return srcLong;
-    }
-
-    public void setSrcLong(double srcLong) {
-        this.srcLong = srcLong;
-    }
-
-    public double getDstLat() {
-        return dstLat;
-    }
-
-    public void setDstLat(double dstLat) {
-        this.dstLat = dstLat;
-    }
-
-    public double getDstLong() {
-        return dstLong;
-    }
-
-    public void setDstLong(double dstLong) {
-        this.dstLong = dstLong;
-    }
-
     public double getDistance() {
         return distance;
     }
@@ -94,11 +60,27 @@ public class Order {
         this.distance = distance;
     }
 
-    public User getUser() {
-        return user;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public Place getSrcPlace() {
+        return srcPlace;
+    }
+
+    public void setSrcPlace(Place srcPlace) {
+        this.srcPlace = srcPlace;
+    }
+
+    public Place getDstPlace() {
+        return dstPlace;
+    }
+
+    public void setDstPlace(Place dstPlace) {
+        this.dstPlace = dstPlace;
     }
 }
