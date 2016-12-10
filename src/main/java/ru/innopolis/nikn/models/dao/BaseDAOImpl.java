@@ -11,17 +11,34 @@ import java.util.List;
 public abstract class BaseDAOImpl implements BaseDAO{
     @Override
     public boolean add(BaseEntity entity) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(entity);
-        entityManager.getTransaction().commit();
+        try{
+            entityManager.getTransaction().begin();
+            entityManager.persist(entity);
+        }
+        finally{
+            entityManager.getTransaction().commit();
+        }
         return true;
     }
 
     @Override
-    public boolean delete(long id, Class clazz) {
-        entityManager.getTransaction().begin();
+    public boolean merge(BaseEntity entity) {
+        try{
+            entityManager.getTransaction().begin();
+            entityManager.merge(entity);
+        }
+        finally{
+            entityManager.getTransaction().commit();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean delete(long id, Class<? extends BaseEntity> clazz) {
         try {
-            entityManager.remove(getById(id, clazz));
+            BaseEntity baseEntity = getById(id, clazz);
+            entityManager.getTransaction().begin();
+            entityManager.remove(baseEntity);
         }
         catch (EntityNotFoundException ex) {
             return false;
@@ -35,8 +52,8 @@ public abstract class BaseDAOImpl implements BaseDAO{
 
     @Override
     public BaseEntity getById(long id, Class<? extends BaseEntity> clazz) {
-        entityManager.getTransaction().begin();
         try {
+            entityManager.getTransaction().begin();
             return entityManager.getReference(clazz, id);
         }
         catch (EntityNotFoundException ex) {

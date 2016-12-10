@@ -3,6 +3,7 @@ package ru.innopolis.nikn.models.services;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.innopolis.nikn.models.entities.BaseEntity;
 import ru.innopolis.nikn.models.models.StatusModel;
 import ru.innopolis.nikn.models.dao.StatusDAO;
@@ -12,17 +13,16 @@ import ru.innopolis.nikn.models.entities.Status;
 import java.util.LinkedList;
 import java.util.List;
 
-@Component
-public class StatusServiceImpl implements StatusService{
+@Service
+public class StatusServiceImpl extends BaseServiceImpl implements StatusService{
     @Autowired
     StatusDAO statusDAO;
-    private MapperFacade mapper = BaseMapper.MAPPER_FACTORY.getMapperFacade();
 
     @Override
     public String getAddStatus(StatusModel statusModel) {
 
         Status status = mapper.map(statusModel, Status.class);
-        statusDAO.add(status);
+        statusDAO.merge(status);
         return "redirect:/status";
     }
 

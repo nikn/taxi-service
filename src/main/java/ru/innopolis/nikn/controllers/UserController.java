@@ -1,11 +1,16 @@
 package ru.innopolis.nikn.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import ru.innopolis.nikn.models.models.ProfileModel;
+import ru.innopolis.nikn.models.models.UserModel;
+import ru.innopolis.nikn.models.services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/")
     public ModelAndView mainPage() {
@@ -33,7 +41,10 @@ public class UserController {
     @GetMapping(value = "/register")
     public ModelAndView getRegisterForm() {
         ModelAndView model = new ModelAndView("register");
+        UserModel userModel = new UserModel();
         model.addObject("title", "Register form.");
+        model.addObject("user", new UserModel());
+        model.addObject("profile", new ProfileModel());
         return model;
     }
 
@@ -46,13 +57,10 @@ public class UserController {
         return "redirect:/login?logout";
     }
 
-//    @PostMapping(value = "/register")
-//    public ModelAndView postRegisterForm(
-//            HttpSession session,
-//            @RequestParam Map<String,String> requestParams
-//    ){
-//        ModelAndView model = userService.registerAction(session, requestParams);
-//        return model;
-//    }
+    @PostMapping(value = "/register")
+    public String postRegisterForm(UserModel userModel, ProfileModel profileModel){
+        userService.registerAction(userModel, profileModel);
+        return "redirect:/login";
+    }
 
 }

@@ -38,7 +38,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                             <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" required/>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
                         </div>
                     </div>
                 </div>

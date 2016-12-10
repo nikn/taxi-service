@@ -44,7 +44,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="first_name" id="first_name"  placeholder="Enter your first name"/>
+                            <input type="text" class="form-control" name="firstName" id="first_name"  placeholder="Enter your first name"/>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="last_name" id="last_name"  placeholder="Enter your last name."/>
+                            <input type="text" class="form-control" name="lastName" id="last_name"  placeholder="Enter your last name."/>
                         </div>
                     </div>
                 </div>

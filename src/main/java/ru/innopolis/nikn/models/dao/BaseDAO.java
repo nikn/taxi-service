@@ -17,6 +17,7 @@ public interface BaseDAO{
     MapperFacade mapper = BaseMapper.MAPPER_FACTORY.getMapperFacade();
 
     boolean add(BaseEntity entity);
+    boolean merge(BaseEntity entity);
     boolean delete(long id, Class<? extends BaseEntity> clazz);
     List<? extends BaseEntity> getAll();
     BaseEntity getById(long id, Class<? extends BaseEntity> clazz);

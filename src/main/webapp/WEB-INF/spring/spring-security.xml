@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">
-        <!--<csrf disabled="true"/>-->
+        <csrf disabled="true"/>
         <!--<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />-->
         <!--<intercept-url pattern="/" access="hasAnyRole('USER', 'ADMIN')" />-->
 
