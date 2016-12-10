@@ -32,4 +32,5 @@ public class UserServiceImpl  extends BaseServiceImpl implements UserService{
         profile.setUser(user);
         profileDAO.add(profile);
     }
+
 }

@@ -32,14 +32,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/login")
-    public ModelAndView getLoginForm() {
+    public ModelAndView loginPage() {
         ModelAndView model = new ModelAndView("login");
         model.addObject("title", "Login form.");
         return model;
     }
 
     @GetMapping(value = "/register")
-    public ModelAndView getRegisterForm() {
+    public ModelAndView registerPage() {
         ModelAndView model = new ModelAndView("register");
         UserModel userModel = new UserModel();
         model.addObject("title", "Register form.");
@@ -58,9 +58,15 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public String postRegisterForm(UserModel userModel, ProfileModel profileModel){
+    public String registerAction(UserModel userModel, ProfileModel profileModel){
         userService.registerAction(userModel, profileModel);
         return "redirect:/login";
     }
 
+
+    @GetMapping(value="/profile")
+    public ModelAndView profilePage () {
+        ModelAndView model = new ModelAndView("profile");
+        return model;
+    }
 }
